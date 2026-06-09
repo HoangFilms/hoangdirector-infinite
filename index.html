@@ -71,35 +71,35 @@
   /* HUD */
   .hud{position:fixed;inset:0;z-index:30;pointer-events:none;padding:clamp(18px,2.4vw,34px);font-size:var(--eyebrow)}
   .brand{position:absolute;top:clamp(18px,2.4vw,34px);left:clamp(18px,2.4vw,34px)}
-  .brand .mark{font-family:var(--display);font-weight:900;font-size:clamp(17px,1.5vw,22px);letter-spacing:-.01em;line-height:1;color:var(--ink)}
+  .brand .mark{font-family:var(--display);font-weight:900;font-size:clamp(17px,1.5vw,22px);letter-spacing:-.01em;line-height:1;color:var(--ink);text-shadow:0 2px 14px rgba(34,28,21,.18),0 1px 3px rgba(34,28,21,.10)}
   .brand .mark .dot{color:var(--accent)}
-  .brand .sub{margin-top:7px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+  .brand .sub{margin-top:7px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6)}
   .top-right{position:absolute;top:clamp(18px,2.4vw,34px);right:clamp(18px,2.4vw,34px);display:flex;gap:22px;align-items:center}
-  .info-btn{pointer-events:auto;cursor:pointer;background:rgba(255,255,255,.42);border:1px solid var(--line);color:var(--ink);
+  .info-btn{pointer-events:auto;cursor:pointer;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.32);color:#fff;
     font-family:var(--sans);font-size:var(--eyebrow);letter-spacing:.24em;text-transform:uppercase;border-radius:100px;
     display:inline-flex;align-items:center;gap:9px;padding:11px 18px;min-height:44px;backdrop-filter:blur(8px);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 4px 14px rgba(60,48,32,.12);transition:background .3s}
-  .info-btn:hover{background:rgba(255,255,255,.66)}
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 14px rgba(0,0,0,.16);transition:background .3s,border-color .3s}
+  .info-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55)}
   .info-btn .ic{width:13px;height:13px;display:inline-block;position:relative}
-  .info-btn .ic::before,.info-btn .ic::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:var(--ink);border-radius:2px}
+  .info-btn .ic::before,.info-btn .ic::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:#fff;border-radius:2px}
   .info-btn .ic::before{top:3px}.info-btn .ic::after{bottom:3px}
-  .count{color:var(--muted);letter-spacing:.24em;text-transform:uppercase}
-  .hint{position:absolute;left:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);display:flex;align-items:center;gap:13px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase}
+  .count{color:rgba(255,255,255,.6);letter-spacing:.24em;text-transform:uppercase}
+  .hint{position:absolute;left:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);display:flex;align-items:center;gap:13px;color:rgba(255,255,255,.6);letter-spacing:.22em;text-transform:uppercase}
   .hint .compass{width:24px;height:24px;position:relative;flex:0 0 auto;animation:breathe 3.4s ease-in-out infinite}
-  .hint .compass span{position:absolute;left:50%;top:50%;width:5px;height:5px;border-top:1.4px solid var(--ink);border-right:1.4px solid var(--ink);opacity:.5}
+  .hint .compass span{position:absolute;left:50%;top:50%;width:5px;height:5px;border-top:1.4px solid rgba(255,255,255,.7);border-right:1.4px solid rgba(255,255,255,.7);opacity:.6}
   .hint .compass .n{transform:translate(-50%,-9px) rotate(-45deg)}.hint .compass .e{transform:translate(2px,-50%) rotate(45deg)}
   .hint .compass .s{transform:translate(-50%,4px) rotate(135deg)}.hint .compass .w{transform:translate(-9px,-50%) rotate(-135deg)}
   @keyframes breathe{0%,100%{opacity:.7}50%{opacity:1}}
-  .coords{position:absolute;right:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);text-align:right;color:var(--muted);letter-spacing:.16em;font-variant-numeric:tabular-nums}
-  .coords b{color:var(--ink);font-weight:600}
-  .coords .ttl{display:block;color:var(--faint);letter-spacing:.28em;text-transform:uppercase;margin-bottom:6px}
+  .coords{position:absolute;right:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);text-align:right;color:rgba(255,255,255,.5);letter-spacing:.16em;font-variant-numeric:tabular-nums}
+  .coords b{color:#fff;font-weight:600}
+  .coords .ttl{display:block;color:rgba(255,255,255,.35);letter-spacing:.28em;text-transform:uppercase;margin-bottom:6px}
 
-  .cursor{position:fixed;left:0;top:0;z-index:60;width:36px;height:36px;margin:-18px 0 0 -18px;border:1.4px solid rgba(34,28,21,.65);border-radius:50%;pointer-events:none;
+  .cursor{position:fixed;left:0;top:0;z-index:60;width:36px;height:36px;margin:-18px 0 0 -18px;border:1.4px solid rgba(255,255,255,.65);border-radius:50%;pointer-events:none;
     transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s;display:grid;place-items:center}
-  .cursor .lbl{font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:0;transition:opacity .25s}
+  .cursor .lbl{font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .25s}
   .cursor.is-hot{width:72px;height:72px;margin:-36px 0 0 -36px;border-color:var(--accent)}
   .cursor.is-hot .lbl{opacity:1;color:var(--accent)}
-  .cursor.is-grab{width:18px;height:18px;margin:-9px 0 0 -9px;background:var(--ink);border-color:var(--ink)}
+  .cursor.is-grab{width:18px;height:18px;margin:-9px 0 0 -9px;background:#fff;border-color:#fff}
   @media (pointer:coarse){.cursor{display:none}.stage-wrap{cursor:auto}}
 
   /* overlays */
@@ -158,7 +158,7 @@
     <div class="brand"><div class="mark">HOANG DIRECTOR<span class="dot">.</span></div><div class="sub">Film Director, Saigon</div></div>
     <div class="top-right"><span class="count">11 Films · Since 2020</span>
       <button class="info-btn" id="infoOpen" aria-label="Open director information"><span class="ic"></span>About</button></div>
-    <div class="hint"><span class="compass" aria-hidden="true"><span class="n"></span><span class="e"></span><span class="s"></span><span class="w"></span></span>Drag to explore · Click to play</div>
+    <div class="hint"><span class="compass" aria-hidden="true"><span class="n"></span><span class="e"></span><span class="s"></span><span class="w"></span></span>Scroll or drag · Click to play</div>
     <div class="coords" aria-hidden="true"><span class="ttl">Spatial readout</span>X <b id="cx">+0000</b> &nbsp; Y <b id="cy">+0000</b></div>
   </div>
 
@@ -280,7 +280,7 @@
   addEventListener("pointermove",function(e){pointerX=e.clientX;pointerY=e.clientY;mTX=(e.clientX/vw-.5)*2;mTY=(e.clientY/vh-.5)*2;
     if(dragging){var dx=e.clientX-lastX,dy=e.clientY-lastY;tgtX-=dx;tgtY-=dy;velX=-dx;velY=-dy;moved+=Math.abs(dx)+Math.abs(dy);lastX=e.clientX;lastY=e.clientY;}});
   addEventListener("pointerup",function(){if(!dragging)return;dragging=false;stageWrap.classList.remove("grabbing");cursor.classList.remove("is-grab");});
-  stageWrap.addEventListener("wheel",function(e){e.preventDefault();tgtX+=e.deltaX;tgtY+=e.deltaY;velX=e.deltaX*0.5;velY=e.deltaY*0.5;},{passive:false});
+  stageWrap.addEventListener("wheel",function(e){e.preventDefault();var m=e.deltaMode===0?1:30;var dx=e.deltaX*m,dy=e.deltaY*m;tgtX+=dx;tgtY+=dy;if(e.deltaMode!==0){velX=dx*0.4;velY=dy*0.4;}},{passive:false});
   addEventListener("keydown",function(e){var s=130;if(e.key==="ArrowLeft")tgtX-=s;else if(e.key==="ArrowRight")tgtX+=s;else if(e.key==="ArrowUp")tgtY-=s;else if(e.key==="ArrowDown")tgtY+=s;else if(e.key==="Escape"){closePlayer();closeInfo();}});
   stageWrap.addEventListener("pointerover",function(e){var f=e.target.closest&&e.target.closest(".frame");if(f){cursor.classList.add("is-hot");hotProj=f.getAttribute("aria-label");if(!dragging)startVid(f);}});
   stageWrap.addEventListener("pointerout",function(e){var f=e.target.closest&&e.target.closest(".frame");if(f&&(!e.relatedTarget||!e.relatedTarget.closest(".frame"))){cursor.classList.remove("is-hot");hotProj=null;stopVid(f);}});
