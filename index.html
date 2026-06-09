@@ -280,7 +280,7 @@
   addEventListener("pointermove",function(e){pointerX=e.clientX;pointerY=e.clientY;mTX=(e.clientX/vw-.5)*2;mTY=(e.clientY/vh-.5)*2;
     if(dragging){var dx=e.clientX-lastX,dy=e.clientY-lastY;tgtX-=dx;tgtY-=dy;velX=-dx;velY=-dy;moved+=Math.abs(dx)+Math.abs(dy);lastX=e.clientX;lastY=e.clientY;}});
   addEventListener("pointerup",function(){if(!dragging)return;dragging=false;stageWrap.classList.remove("grabbing");cursor.classList.remove("is-grab");});
-  stageWrap.addEventListener("wheel",function(e){e.preventDefault();var m=e.deltaMode===0?1:30;var dx=e.deltaX*m,dy=e.deltaY*m;if(e.deltaMode===0){posX+=dx;posY+=dy;tgtX=posX;tgtY=posY;}else{tgtX+=dx;tgtY+=dy;velX=dx*0.4;velY=dy*0.4;}},{passive:false});
+  document.addEventListener("wheel",function(e){e.preventDefault();var m=e.deltaMode===0?1:30;var dx=e.deltaX*m,dy=e.deltaY*m;if(e.deltaMode===0){posX+=dx;posY+=dy;tgtX=posX;tgtY=posY;}else{tgtX+=dx;tgtY+=dy;velX=dx*0.4;velY=dy*0.4;}},{passive:false,capture:true});
   addEventListener("keydown",function(e){var s=130;if(e.key==="ArrowLeft")tgtX-=s;else if(e.key==="ArrowRight")tgtX+=s;else if(e.key==="ArrowUp")tgtY-=s;else if(e.key==="ArrowDown")tgtY+=s;else if(e.key==="Escape"){closePlayer();closeInfo();}});
   stageWrap.addEventListener("pointerover",function(e){var f=e.target.closest&&e.target.closest(".frame");if(f){cursor.classList.add("is-hot");hotProj=f.getAttribute("aria-label");if(!dragging)startVid(f);}});
   stageWrap.addEventListener("pointerout",function(e){var f=e.target.closest&&e.target.closest(".frame");if(f&&(!e.relatedTarget||!e.relatedTarget.closest(".frame"))){cursor.classList.remove("is-hot");hotProj=null;stopVid(f);}});
