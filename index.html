@@ -144,6 +144,18 @@
 
   @media (prefers-reduced-motion:reduce){.mesh,.grain,.hint .compass,.brand .mark{animation:none}.intro .ttl .ln i{animation-duration:.01s}}
   @media (max-width:760px){:root{--eyebrow:.58rem}.brand .sub{max-width:160px}.count,.coords{display:none}}
+  @media (max-width:640px){
+    .card{border-radius:10px}
+    .ctitle{left:6px;right:6px;bottom:6px}
+    .ctitle .m{display:none}
+    .ui.tr{display:none}
+    .ui.play{display:none}
+    .brand .mark{font-size:14px}
+    .brand .sub{display:none}
+    .scrim-b{inset:38% 0 0 0}
+    .hint{display:none}
+    .info-btn{padding:8px 14px;min-height:36px}
+  }
 </style>
 </head>
 <body>
@@ -208,13 +220,25 @@
     {id:"10",title:"Tuan",cat:"Commercial",year:2024,client:"",thumb:"https://files.catbox.moe/b75wcu.jpg",video:"https://files.catbox.moe/jtq8zx.mp4"},
     {id:"11",title:"Maille",cat:"Commercial",year:2020,client:"Maille",thumb:"thumbs/maille.jpg",video:CDN+"MAILLE%20LIGHT.mp4"}
   ];
-  // tight 4-3-4 grid: center x,y in tile, card width, depth (rigid=1), small rotation
-  var LAYOUT={
-    "01":[215,138,390,1,-1.5],"04":[645,138,390,1,1.5],"07":[1075,138,390,1,-1],"10":[1505,138,390,1,2],
-    "02":[287,453,533,1,1],   "05":[860,453,533,1,-1.5],"08":[1433,453,533,1,1.5],
-    "03":[215,769,390,1,-2],  "06":[645,769,390,1,1],   "09":[1075,769,390,1,-1],"11":[1505,769,390,1,1.5]
-  };
-  var TILE_W=1720,TILE_H=906;
+  var isMobile=window.innerWidth<640;
+  // desktop: tight 4-3-4 grid | mobile: compact 3-3-3-2 grid
+  var LAYOUT,TILE_W,TILE_H;
+  if(isMobile){
+    LAYOUT={
+      "01":[70, 85, 105,1,-1.5],"04":[192, 85, 105,1,1.5], "07":[314, 85, 105,1,-1],
+      "02":[70,230, 105,1,1],   "05":[192,230, 105,1,-1],  "08":[314,230, 105,1,1.5],
+      "03":[70,375, 105,1,-1.5],"06":[192,375, 105,1,1],   "09":[314,375, 105,1,-1],
+      "10":[110,505,130,1,1],   "11":[274,505,130,1,-1.5]
+    };
+    TILE_W=384;TILE_H=600;
+  }else{
+    LAYOUT={
+      "01":[215,138,390,1,-1.5],"04":[645,138,390,1,1.5],"07":[1075,138,390,1,-1],"10":[1505,138,390,1,2],
+      "02":[287,453,533,1,1],   "05":[860,453,533,1,-1.5],"08":[1433,453,533,1,1.5],
+      "03":[215,769,390,1,-2],  "06":[645,769,390,1,1],   "09":[1075,769,390,1,-1],"11":[1505,769,390,1,1.5]
+    };
+    TILE_W=1720;TILE_H=906;
+  }
   var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   var stageWrap=document.getElementById("stageWrap"),stage=document.getElementById("stage");
   var field=document.getElementById("field"),spec=document.getElementById("spec"),cursor=document.getElementById("cursor");
@@ -223,7 +247,7 @@
   function titleSize(w,title){
     var usable=w*0.88, len=title.length;
     var fitByLen=usable/(len*0.56), desired=w*0.092;
-    return Math.round(Math.max(22, Math.min(desired, fitByLen)));
+    return Math.round(Math.max(isMobile?5:22, Math.min(desired, fitByLen)));
   }
   var items=[];
   PROJECTS.forEach(function(p){
