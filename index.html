@@ -176,7 +176,7 @@
 
   <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player">
     <div class="scrim-dark" data-close></div>
-    <div class="player-stage"><video id="video" playsinline preload="none" controls></video>
+    <div class="player-stage"><video id="video" playsinline webkit-playsinline preload="metadata" controls></video>
       <div class="player-bar"><div class="t" id="ptitle">Film<small id="psub"></small></div><button class="close" data-close aria-label="Close player">Close</button></div></div>
   </div>
 
@@ -225,12 +225,12 @@
   var LAYOUT,TILE_W,TILE_H;
   if(isMobile){
     LAYOUT={
-      "01":[70, 85, 105,1,-1.5],"04":[192, 85, 105,1,1.5], "07":[314, 85, 105,1,-1],
-      "02":[70,230, 105,1,1],   "05":[192,230, 105,1,-1],  "08":[314,230, 105,1,1.5],
-      "03":[70,375, 105,1,-1.5],"06":[192,375, 105,1,1],   "09":[314,375, 105,1,-1],
-      "10":[110,505,130,1,1],   "11":[274,505,130,1,-1.5]
+      "01":[70, 46, 105,1,-1.5],"04":[192, 46, 105,1,1.5], "07":[314, 46, 105,1,-1],
+      "02":[70,121, 105,1,1],   "05":[192,121, 105,1,-1],  "08":[314,121, 105,1,1.5],
+      "03":[70,196, 105,1,-1.5],"06":[192,196, 105,1,1],   "09":[314,196, 105,1,-1],
+      "10":[110,278,130,1,1],   "11":[274,278,130,1,-1.5]
     };
-    TILE_W=384;TILE_H=600;
+    TILE_W=384;TILE_H=314;
   }else{
     LAYOUT={
       "01":[215,138,390,1,-1.5],"04":[645,138,390,1,1.5],"07":[1075,138,390,1,-1],"10":[1505,138,390,1,2],
@@ -310,7 +310,7 @@
   stageWrap.addEventListener("pointerout",function(e){var f=e.target.closest&&e.target.closest(".frame");if(f&&(!e.relatedTarget||!e.relatedTarget.closest(".frame"))){cursor.classList.remove("is-hot");hotProj=null;stopVid(f);}});
 
   var player=document.getElementById("player"),video=document.getElementById("video"),ptitle=document.getElementById("ptitle"),psub=document.getElementById("psub");
-  function openPlayer(p){ptitle.firstChild.textContent=p.title;psub.textContent=p.cat+" · "+p.year+(p.client?"  ·  "+p.client:"");video.src=p.video;player.classList.add("open");var pl=video.play();if(pl&&pl.catch)pl.catch(function(){});}
+  function openPlayer(p){ptitle.firstChild.textContent=p.title;psub.textContent=p.cat+" · "+p.year+(p.client?"  ·  "+p.client:"");video.pause();video.src=p.video;video.load();player.classList.add("open");var pl=video.play();if(pl&&pl.catch)pl.catch(function(){});}
   function closePlayer(){if(!player.classList.contains("open"))return;player.classList.remove("open");video.pause();video.removeAttribute("src");video.load();}
   player.addEventListener("click",function(e){if(e.target.hasAttribute("data-close"))closePlayer();});
   var info=document.getElementById("info");
